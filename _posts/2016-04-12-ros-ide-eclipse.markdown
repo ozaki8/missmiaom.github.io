@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "ROS IDE之eclipse配置方法"
-subtitle:   " \"Hello World, Hello Blog\""
+subtitle:   " \"eclipse setting for ROS\""
 date:       2015-04-29 12:00:00
 author:     "Leiym"
 tags:
