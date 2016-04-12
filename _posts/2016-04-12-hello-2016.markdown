@@ -4,6 +4,7 @@ title:      "Welcome to Leiym Blog"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2016-04-12
 author:     "Leiym"
+header-img: "img/post-bg-2015.jpg"
 tags:
     - 生活
 ---
