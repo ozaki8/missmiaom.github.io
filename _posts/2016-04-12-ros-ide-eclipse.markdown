@@ -9,11 +9,10 @@ tags:
     - ROS
 ---
 
-## ROS IDE之Eclipse的配置方法
-***
-> 这篇博文给大家介绍ROS的重要IDE——Eclipse的配置方法。
 
+> 这篇博文给大家介绍ROS的重要IDE——Eclipse的配置方法。
 ***
+
 ### 安装eclipse并配置启动文件
 
 不能通过apt-get的方式安装，而需要在官网下载客户端，并做相关配置。下载地址：[eclipse官网下载](http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/mars2)。（注意需要选择Eclipse IDE for C/C++ Developers 版本，并根据你的ubuntu系统选择32位或者64位）
@@ -31,17 +30,46 @@ tags:
 
 ### 创建eclipse工程
 
-执行以下命令，记得将*catkin_ws*替换成你想要导入eclipse的工程所在的工作空间名：
+执行以下命令，记得将 *catkin_ws* 替换成你想要导入eclipse的工程所在的工作空间名：
 1. `$ . ~/catkin_ws/devel/setup.bash`
-- `$ cd ~/catkin_ws`
-- `$ catkin_make --force-cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_ECLIPSE_MAKE_ARGUMENTS=-j8 .`
+2. `$ cd ~/catkin_ws`
+3. `$ catkin_make --force-cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_ECLIPSE_MAKE_ARGUMENTS=-j8 .`
 
 ### 将工程导入eclipse
 
-打开eclipse，在导入之前更改一下头文件和内存限制，以免导致像<ros.h>等头文件无法包含。
+打开eclipse，在导入项目之前先做一些设置。点击`Properties --> C/C++ Make Project --> Environment`，添加以下环境变量：
+- ROS_ROOT
+- ROS_MASTER_URI
+- ROS_PACKAGE_PATH
+- PYTHONPATH
+- PATH
+
+注意，这些变量最好是在终端中使用echo命令查看，直接复制即可。如：
+- $echo ROS_ROOT
+
+然后更改编译选项，选择 *properties -> C/C++ general -> Preprocessor Include Paths, Macros etc*，点击 *Providers* 标签，在 *CDT GCC Built-in Compiler Settings [ Shared ]* 选项打上勾。 如下图：
+![eclipse setting]()
+
+最后，点击 *File --> Import --> Existing projects into workspace*，**记住，这里的选择的文件夹一定要是项目所在的工作空间的根目录！**
+
+项目导入完毕后，需要等待一会以便eclipse进行代码分析，在左侧即可看到项目的文件树结构。
 
 ### 调试运行
 
+编译的时候像普通项目一样，如果语法有错误就会报错。运行错误则需要单步调试。
+
+选择 *Run –> Run configurations… –> C/C++ Application* ，双击或者点击 *New* ，选择 *Main* 标签，点击 *Search project* 选择已经编译好的二进制文件，**注意这里需要选择的是已经编译好的二进制文件，后缀是.bin，而不是源文件**。
+
+最后点击 *Debug/Run* 就可以在eclipse中调试，并且可以设置断点来检查程序的运行错误。
+
 ### DIY eclipse代码格式以及配色
 
+这个就不在赘述啦，网上有很多参考，在这里列出我觉得比较好的博文分享给大家。
 
+[关闭英文拼写检查，关闭xml验证 ](http://blog.sina.com.cn/s/blog_70b623e4010173ce.html)
+
+[Eclipse安装颜色主题，个性化你的IDE，让你的IDE焕然一新](http://www.open-open.com/lib/view/open1389410762742.html)
+
+---
+### 后记
+eclipse功能强大，但配置方法较为复杂，在编译调试基于ROS的程序时经常出错，解决这些问题又需要一定的编程基础。下一篇博文为大家介绍更为轻量级，更为简单的QT IDE。
