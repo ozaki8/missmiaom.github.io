@@ -9,6 +9,7 @@ tags:
     - ROS
 ---
 
+> “Yeah It's on. ”
 
 # ROS IDE之Eclipse的配置方法
 ***
