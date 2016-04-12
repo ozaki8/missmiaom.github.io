@@ -10,12 +10,12 @@ tags:
 ---
 
 
-# ROS IDE之Eclipse的配置方法
+## ROS IDE之Eclipse的配置方法
 ***
 > 这篇博文给大家介绍ROS的重要IDE——Eclipse的配置方法。
 
 ***
-## 安装eclipse并配置启动文件
+### 安装eclipse并配置启动文件
 
 不能通过apt-get的方式安装，而需要在官网下载客户端，并做相关配置。下载地址：[eclipse官网下载](http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/mars2)。（注意需要选择Eclipse IDE for C/C++ Developers 版本，并根据你的ubuntu系统选择32位或者64位）
 
@@ -30,17 +30,17 @@ tags:
 - `Exec=bash -i -c /opt/eclipse/eclipse`
 
 
-## 创建eclipse工程
+### 创建eclipse工程
 
 执行以下命令，记得将*catkin_ws*替换成你想要导入eclipse的工程所在的工作空间名：
 1. `$ . ~/catkin_ws/devel/setup.bash`
 - `$ cd ~/catkin_ws`
 - `$ catkin_make --force-cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_ECLIPSE_MAKE_ARGUMENTS=-j8 .`
 
-## 将工程导入eclipse
+### 将工程导入eclipse
 
 打开eclipse，在导入之前更改一下头文件和内存限制，以免导致像<ros.h>等头文件无法包含。
 
-## 调试运行
+### 调试运行
 
-## DIY eclipse代码格式以及配色
+### DIY eclipse代码格式以及配色
