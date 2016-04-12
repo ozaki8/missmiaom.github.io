@@ -1,12 +1,11 @@
 ---
 layout:     post
-title:      "ROS IDE之Eclipse的配置方法"
-subtitle:   "\"Eclipse的配置方法\""
-date:       2016-04-12 12:00:00
-author:     "Leiym"
-header-img: "img/post-bg-2015.jpg"
+title:      "Welcome to Hux Blog"
+subtitle:   " \"Hello World, Hello Blog\""
+date:       2015-04-29 12:00:00
+author:     "Hux"
 tags:
-    - ROS
+    - 生活
 ---
 
 ## 前言
