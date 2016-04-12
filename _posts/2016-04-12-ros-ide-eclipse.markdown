@@ -1,74 +1,58 @@
 ---
 layout:     post
-title:      "Welcome to Hux Blog"
-subtitle:   " \"Hello World, Hello Blog\""
-date:       2015-04-29 12:00:00
+title:      "ROS IDE之Eclipse的配置方法"
+subtitle:   "\"ROS IDE设置\""
+subtitle:   "\"Eclipse的配置方法\""
+date:       2016-04-12 12:00:00
 author:     "Hux"
+header-img: "img/post-bg-2015.jpg"
 tags:
-    - 生活
+    - ROS
 ---
-
-> “Yeah It's on. ”
-
 
 ## 前言
 
 Hux 的 Blog 就这么开通了。
 
-
 2015 年，Hux 总算有个地方可以好好写点东西了。
-
 
 作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。
 
-在玩了一段时间知乎之后，答题的快感又激起了我开博客的冲动。之前的[个人网站](http://huangxuan.me/portfolio)是作品集形式的（现在集成进来了），并不适合用来写博文，一不做二不休，花一天搞一个吧！
-
-
----
-
-## 正文
-
-接下来说说搭建这个博客的技术细节。  
-
-正好之前就有关注过 [GitHub Pages](https://pages.github.com/) + [Jekyll](http://jekyllrb.com/) 快速 Building Blog 的技术方案，非常轻松时尚。
-
-其优点非常明显：
-
-* **Markdown** 带来的优雅写作体验
-* 非常熟悉的 Git workflow ，**Git Commit 即 Blog Post**
-* 利用 GitHub Pages 的域名和免费无限空间，不用自己折腾主机
-	* 如果需要自定义域名，也只需要简单改改 DNS 加个 CNAME 就好了
-* Jekyll 的自定制非常容易，基本就是个模版引擎
-
-
-本来觉得最大的缺点可能是 GitHub 在国内访问起来太慢，所以第二天一起床就到 GitCafe(Chinese GitHub Copy) 迁移了一个[镜像](http://huxpro.gitcafe.io)出来，结果还是巨慢。
-
-哥哥可是个前端好嘛！ 果断开 Chrome DevTool 查了下网络请求，原来是 **pending 在了 Google Fonts** 上，页面渲染一直被阻塞到请求超时为止，难怪这么慢。  
-忍痛割爱，只好把 Web Fonts 去了（反正超时看到的也只能是 fallback ），果然一下就正常了，而且 GitHub 和 GitCafe 对比并没有感受到明显的速度差异，虽然 github 的 ping 值明显要高一些，达到了 300ms，于是用 DNSPOD 优化了一下速度。
-
-
+在玩了一段时间知乎之后，答题的快感又激起了我开博客的冲动，并不适合用来写博文，一不做二不休，花一天搞一个吧！
 
 ---
 
-配置的过程中也没遇到什么坑，基本就是 Git 的流程，相当顺手
+## ROS IDE之Eclipse的配置方法
+***
+> 这篇博文给大家介绍ROS的重要IDE——Eclipse的配置方法。
 
-大的 Jekyll 主题上直接 fork 了 Clean Blog（这个主题也相当有名，就不多赘述了。唯一的缺点大概就是没有标签支持，于是我给它补上了。）
+***
+### 安装eclipse并配置启动文件
 
-本地调试环境需要 `gem install jekyll`，结果 rubygem 的源居然被墙了……后来手动改成了我大淘宝的镜像源才成功
+不能通过apt-get的方式安装，而需要在官网下载客户端，并做相关配置。下载地址：[eclipse官网下载](http://www.eclipse.org/downloads/packages/eclipse-ide-cc-developers/mars2)。（注意需要选择Eclipse IDE for C/C++ Developers 版本，并根据你的ubuntu系统选择32位或者64位）
 
-Theme 的 CSS 是基于 Bootstrap 定制的，看得不爽的地方直接在 Less 里改就好了（平时更习惯 SCSS 些），**不过其实我一直觉得 Bootstrap 在移动端的体验做得相当一般，比我在淘宝参与的团队 CSS 框架差多了……**所以为了体验，也补了不少 CSS 进去
+下载完成后是没有产生启动图标的，在终端输入eclipse也会提示并没有安装。这时就需要创建一个启动图标，并设置参数。参考：[eclipse启动图标文件配置](http://www.blogs.digitalworlds.net/softwarenotes/?p=54)
 
-最后就进入了耗时反而最长的**做图、写字**阶段，也算是进入了**写博客**的正轨，因为是类似 Hack Day 的方式去搭这个站的，所以折腾折腾着大半夜就过去了。
+完成上述教程后，应该就会生成eclipse图标，点击就可以进入，但这样无法eclipse装载当前环境变量，所以还需要更改一行配置。
 
-第二天考虑中文字体的渲染，fork 了 [Type is Beautiful](http://www.typeisbeautiful.com/) 的 `font` CSS，调整了字号，适配了 Win 的渣渲染，中英文混排效果好多了。
+- `$sudo gedit /usr/share/applications/eclipse.desktop`
+
+将 *Exec=/opt/eclipse/eclipse* 这一行改为：
+
+- `Exec=bash -i -c /opt/eclipse/eclipse`
 
 
-## 后记
+### 创建eclipse工程
 
-回顾这个博客的诞生，纯粹是出于个人兴趣。在知乎相关问题上回答并获得一定的 star 后，我决定把这个博客主题当作一个小小的开源项目来维护。
+执行以下命令，记得将*catkin_ws*替换成你想要导入eclipse的工程所在的工作空间名：
+1. `$ . ~/catkin_ws/devel/setup.bash`
+- `$ cd ~/catkin_ws`
+- `$ catkin_make --force-cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_ECLIPSE_MAKE_ARGUMENTS=-j8 .`
 
-在经历 v1.0 - v1.5 的蜕变后，这个博客主题愈发完整，不但增加了诸多 UI 层的优化（opinionated）；在代码层面，更加丰富的配置项也使得这个主题拥有了更好的灵活性与可拓展性。而作为一个开源项目，我也积极的为其完善文档与解决 issue。
+### 将工程导入eclipse
 
-如果你恰好逛到了这里，希望你也能喜欢这个博客主题。
+打开eclipse，在导入之前更改一下头文件和内存限制，以免导致像<ros.h>等头文件无法包含。
 
-—— Hux 后记于 2015.10
+### 调试运行
+
+### DIY eclipse代码格式以及配色
