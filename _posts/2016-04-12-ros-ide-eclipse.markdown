@@ -1,7 +1,6 @@
 ---
 layout:     post
-title:      "ROS IDE之Eclipse的配置方法"
-subtitle:   "\"ROS IDE设置\""
+title:      "ROS IDE"
 subtitle:   "\"Eclipse的配置方法\""
 date:       2016-04-12 12:00:00
 author:     "Hux"
