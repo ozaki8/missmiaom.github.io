@@ -22,7 +22,7 @@ Qt，全称Qt Creator。exbot的ROS学习镜像集成安装了Qt，安装的是�
 
 从[Qt下载地址](http://www.qt.io/download-open-source/#section-3)下载Qt的**离线**安装程序。如果是32位系统，则需要下载在线安装程序。
 
-下载完成之后直接双击.run文件，进入图形安装界面，默认安装在/home/<user>/Qt5.2.0下（<user>为你的用户名），你也可以点击  *Browse..*  自定义安装路径。
+下载完成之后直接双击.run文件，进入图形安装界面，默认安装在/home/<user>/Qt5.2.0下（user为你的用户名），你也可以点击  *Browse..*  自定义安装路径。
 
 <img src="http://leiym.com/img/in-post/post-ros/Qt-install.jpg"/>
 
@@ -41,7 +41,7 @@ Qt，全称Qt Creator。exbot的ROS学习镜像集成安装了Qt，安装的是�
 `Exec=bash -i -c
 /home/<user>/Qt5.2.0/Tools/QtCreator/bin/qtcreator`
 
-**注意**： *“<user>”* 是你的用户名。
+**注意**： *user* 是你的用户名。
 
 修改完成后，保存并退出。这样添加是为了在通过快捷方式启动 Qt Creator 的同时加载 ROS 环境变量（ROS 环境变量加载脚本配置在 ~/.bashrc 文件内）。
 
