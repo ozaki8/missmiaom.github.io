@@ -41,7 +41,7 @@ Qt，全称Qt Creator。exbot的ROS学习镜像集成安装了Qt，安装的是�
 `Exec=bash -i -c
 /home/<user>/Qt5.2.0/Tools/QtCreator/bin/qtcreator`
 
-**注意**： *<user>* 是你的用户名。
+**注意**： *“<user>”* 是你的用户名。
 
 修改完成后，保存并退出。这样添加是为了在通过快捷方式启动 Qt Creator 的同时加载 ROS 环境变量（ROS 环境变量加载脚本配置在 ~/.bashrc 文件内）。
 
@@ -57,9 +57,11 @@ Qt，全称Qt Creator。exbot的ROS学习镜像集成安装了Qt，安装的是�
 
 `add_executable(turtle_tf_broadcaster src/turtle_tf_broadcaster.cpp)`
 
-`add_executable(turtle_tf_broadcaster src/turtle_listener.cpp)`
+`add_executable(turtle_tf_broadcaster src/turtle_tf_listener.cpp)`
 
 `target_link_libraries(turtle_tf_broadcaster ${catkin_LIBRARIES})`
+
+`target_link_libraries(turtle_tf_listener ${catkin_LIBRARIES})`
 
 然 后 我 们 打 开 QT ， 选 择 Open Project ， 然 后 选 择 *learning_tf/src* 的 *CMakeLists.txt*，点击打开。
 
