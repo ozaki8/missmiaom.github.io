@@ -24,12 +24,12 @@ Qt，全称Qt Creator。exbot的ROS学习镜像集成安装了Qt，安装的是�
 
 下载完成之后直接双击.run文件，进入图形安装界面，默认安装在/home/<user>/Qt5.2.0下（<user>为你的用户名），你也可以点击 *Browse..* 自定义安装路径。
 
-！[Qt安装](https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt-install.jpg)
+<img src="https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt-install.jpg"/>
 
 按照指示一路Next即可完成安装。安装完成后点左上角的搜索，输入“ qt”如果
 看到 Qt Creator 图标则安装成功。
 
-！[Qt](https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt.jpg)
+<img src="https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt.jpg"/>
 
 #### 设置Qt快捷方式
 
@@ -65,15 +65,15 @@ Qt，全称Qt Creator。exbot的ROS学习镜像集成安装了Qt，安装的是�
 
 然 后 我 们 打 开 QT ， 选 择 Open Project ， 然 后 选 择 *learning_tf/src* 的 *CMakeLists.txt*，点击打开。
 
-![Qt-project](https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt-project.jpg)
+<img src="https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt-project.jpg"/>
 
 下一步，选择构建路径，注意构建路径选择工作空间的 *build* 文件夹，我这里是 *catkin_ws/build* 。参数需要填写-DCMAKE_BUILD_TYPE=Debug，否则无法调试。设置好了之后点击 *执行Camke* ，没有错误的话，点击完成即可。
 
-![Qt-camke](https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt-cmake.jpg)
+<img src="https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt-cmake.jpg"/>
 
 打开项目之后，可以在左侧项目树中看到 *src* 文件夹和两个cpp文件。当然，目前这两个cpp文件都是空文件，现在我们就可以利用Qt的API补全功能来进行代码的编写了。
 
-![Qt-pj](https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt-pj.jpg)
+<img src="https://github.com/Missmiaom/missmiaom.github.io/tree/master/img/in-post/post-ros/Qt-pj.jpg"/>
 
 ### 调试
 
