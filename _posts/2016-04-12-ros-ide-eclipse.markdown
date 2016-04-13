@@ -5,8 +5,9 @@ subtitle:   " \"eclipse setting for ROS\""
 date:       2016-04-12
 author:     "Leiym"
 header-img: "img/post-bg-2015.jpg"
-tags: 
+tags:
     - ROS
+    - eclipse
 ---
 
 
@@ -31,13 +32,17 @@ tags:
 ### 创建eclipse工程
 
 执行以下命令，记得将 *catkin_ws* 替换成你想要导入eclipse的工程所在的工作空间名：
+
 1. `$ . ~/catkin_ws/devel/setup.bash`
+
 2. `$ cd ~/catkin_ws`
+
 3. `$ catkin_make --force-cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_ECLIPSE_MAKE_ARGUMENTS=-j8 .`
 
 ### 将工程导入eclipse
 
-打开eclipse，在导入项目之前先做一些设置。点击`Properties --> C/C++ Make Project --> Environment`，添加以下环境变量：
+打开eclipse，在导入项目之前先做一些设置。点击 *Properties --> C/C++ Make Project --> Environment* ，添加以下环境变量：
+
 - ROS_ROOT
 - ROS_MASTER_URI
 - ROS_PACKAGE_PATH
@@ -45,6 +50,7 @@ tags:
 - PATH
 
 注意，这些变量最好是在终端中使用echo命令查看，直接复制即可。如：
+
 - $echo ROS_ROOT
 
 然后更改编译选项，选择 *properties -> C/C++ general -> Preprocessor Include Paths, Macros etc*，点击 *Providers* 标签，在 *CDT GCC Built-in Compiler Settings [ Shared ]* 选项打上勾。 如下图：
@@ -71,5 +77,7 @@ tags:
 [Eclipse安装颜色主题，个性化你的IDE，让你的IDE焕然一新](http://www.open-open.com/lib/view/open1389410762742.html)
 
 ---
+
 ### 后记
+
 eclipse功能强大，但配置方法较为复杂，在编译调试基于ROS的程序时经常出错，解决这些问题又需要一定的编程基础。下一篇博文为大家介绍更为轻量级，更为简单的QT IDE。
