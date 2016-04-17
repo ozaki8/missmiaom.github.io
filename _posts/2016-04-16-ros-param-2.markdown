@@ -35,13 +35,13 @@ dynamic_turtle.cfg其实是一个基于python的模块，首先创建一个Param
 
 这里我添加了一个参数speed，最小值设置为0.5，最大值设置为20。
 
-最后一行是告知generator创建必要的文件并推出程序。第二个参数是cfg文件依附的节点名，第三个参数是生成头文件名称的前缀。（例如我生成的头文件即为：dynamic_turtleConfig.h", 如果是python则为 "dynamic_turtleConfig.py"）
+最后一行是告知generator创建必要的文件并退出程序。第二个参数是cfg文件依附的节点名，第三个参数是生成头文件名称的前缀。（例如我生成的头文件即为：dynamic_turtleConfig.h", 如果是python则为 "dynamic_turtleConfig.py"）
 
 编辑完成之后，我们需要添加运行权限才能使用.cfg文件。
 
 `$chmod a+x cfg/dynamic_turtle.cfg`
 
-再修改CMakeList.txt，产生相应的头文件为后续所用:
+再修改CMakeList.txt，产生相应的头文件为后续所用:（注意：add_dependencies需要在add_executable之后，taeget_link之前）
 
 ```
 generate_dynamic_reconfigure_options(
@@ -49,12 +49,11 @@ generate_dynamic_reconfigure_options(
 )
 
 add_dependencies(dynamic_turtle_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_gencfg)
-#add_dependencies需要在add_executable之后，taeget_link之前
 ```
 
 ### 利用回调机制动态修改参数
 
-先修改circle.cpp为：
+将动态调整机制加入circle.cpp中：
 
 ```
 #include <ros/ros.h>
@@ -76,17 +75,17 @@ int main(int argc, char **argv)
   ros::NodeHandle nh;
 
 	/*dynamic config*/
-	dynamic_reconfigure::Server<dynamic_turtle::dynamic_turtleConfig> server;
+  dynamic_reconfigure::Server<dynamic_turtle::dynamic_turtleConfig> server;
   dynamic_reconfigure::Server<dynamic_turtle::dynamic_turtleConfig>::CallbackType f;
 
-	f = boost::bind(&ConfigCb, _1, _2);
-	server.setCallback(f);
+  f = boost::bind(&ConfigCb, _1, _2);
+  server.setCallback(f);
 
   if(!nh.getParam("/speed", T.linear.x))
 	{
 		ROS_ERROR("Get Speed ERROR");
 		return 0;
-	}
+  }
   T.angular.z = T.linear.x / 2.0;
 
   ros::Publisher twist_pb = nh.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 100);
@@ -102,14 +101,14 @@ int main(int argc, char **argv)
 }
 ```
 
-接下来我会把代码分解，进一步地了解动态修改参数的方法。
+接下来针对动态调整的部分代码做一些讲解，让大家进一步地了解动态修改参数的方法。
 
 ```C++
 #include <dynamic_reconfigure/server.h>
 #include <dynamic_turtle/dynamic_turtleConfig.h>
 ```
 
-这是动态修改参数所必要的两个头文件，注意第二个头文件就是我们利用dynamic_turtle.cfg文件产生的。
+这一段包含了动态修改参数所必要的两个头文件，注意第二个头文件就是我们利用dynamic_turtle.cfg文件产生的。
 
 ```C++
 void ConfigCb(dynamic_turtle::dynamic_turtleConfig &config, uint32_t level)
@@ -119,7 +118,7 @@ void ConfigCb(dynamic_turtle::dynamic_turtleConfig &config, uint32_t level)
 }
 ```
 
-这是一个回调函数，config为上述.cfg文件声明的参数列表，利用config.speed便可以调用更改回调函数被调用时的speed值，并改变T的值，以改变乌龟转圈的速度。
+这是一个回调函数，config为上述.cfg文件声明的参数列表，利用config.speed便可以调用更改参数时的speed值，并改变T的值，从而改变乌龟转圈的速度。
 
 ```C++
 dynamic_reconfigure::Server<dynamic_turtle::dynamic_turtleConfig> server;
@@ -150,6 +149,19 @@ server.setCallback(f);
 在rqt_reconfigure窗口的左边栏选择circle_node，滑动右侧的滑条，或者直接在窗口设置一个值都可以动态的改变speed。在turtlesim中也可以看到乌龟加快或者减慢转圈的速度。（为什么乌龟的轨迹不是完全重合呢，按理说半径恒为2啊，这个问题留给读者自己思考，可以下方留言交流哦~）
 
 <img src="http://leiym.com/img/in-post/post-ros/ros-param/turtle2.jpg"/>
+
+### 总结
+
+使用动态调整参数的机制可总结为以下步骤：
+
+1. 在package.xml文件中加入dynamic_reconfigure编译依赖和运行依赖。
+
+2. 创建.cfg文件，添加参数名到参数列表。
+
+3. 修改CMakeLists.txt。添加generate_dynamic_reconfigure_options以及add_dependencies。
+
+4. 在程序中加入两个头文件，并声明动态调整服务，绑定其回调函数。在回调函数中实现对参数对程序的影响
+
 
 ---
 
