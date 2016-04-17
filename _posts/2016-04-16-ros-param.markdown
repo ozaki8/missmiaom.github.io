@@ -75,7 +75,7 @@ param标签提供了一种直白的参数设置方法，用户只需要在launch
 
 `<param name="parameter_name" type="double" value="10.0" />`
 
-name、type、value属性分别代表参数的名称、类型、值，类型有：str|int|double|bool，四种基础类型。
+name、type、value属性分别代表参数的名称、类型、值，类型有：str、int、double、bool，四种基础类型。
 
 在包目录下建立launch文件夹（用文件夹区分文件是一个好习惯...），然后新建circle.launch。内容如下：
 
