@@ -20,7 +20,7 @@ tags:
 
 我们先创建一个名为dynamic_turtle的包：
 
-`atkin_create_pkg dynamic_turtle rospy roscpp dynamic_reconfigure`
+`catkin_create_pkg dynamic_turtle rospy roscpp dynamic_reconfigure`
 
 然后在src文件夹中，创建一个名为circle.cpp的文件。代码如下：
 
@@ -55,19 +55,19 @@ int main(int argc, char **argv)
 }
 ```
 
-这一段简单的代码的作用就是从参数服务器得到参数名为speed的参数值，并将其值赋给T.linear.x（线速度的X轴分量），然后T.linear.x的一半赋值给T.angular.z（角速度的Z轴分量），根据  `r = v / w` 可以知道乌龟的运行轨迹是绕定点做圆周运动，并且半径为2。
+这一段简单代码的作用就是从参数服务器得到参数名为speed的参数值，并将其值赋给T.linear.x（线速度的X轴分量），然后T.linear.x的一半赋值给T.angular.z（角速度的Z轴分量），根据  `r = v / w` 可以知道乌龟的运行轨迹是绕定点做圆周运动，并且半径为2。
 
-我们来修改一下CMakeLists.txt，以便编译产生可执行文件：
+修改一下CMakeLists.txt，以便编译产生可执行文件：
 
 ```xml
 add_executable(circle_node src/circle.cpp)
+
 target_link_libraries(circle_node
   ${catkin_LIBRARIES}
 )
-
 ```
 
-这里可能有人疑惑了，参数服务器的speed从哪来呢，这里就介绍两种最常用的设置参数方法。
+这里可能有人疑惑了，参数服务器的speed从哪来呢，接下来我就给大家介绍两种最常用的设置参数方法。
 
 #### launch文件的param标签
 
@@ -88,9 +88,9 @@ name、type、value属性分别代表参数的名称、类型、值，类型有�
 
 这里设置了speed参数值为4.0，我们执行一下 `catkin_make`，然后分别运行以下两条命令(先开roscore)：
 
-`roslaunch dynamic_turtle circle.launch`
+`$roslaunch dynamic_turtle circle.launch`
 
-`rosrun turtlesim turtlesim_node`
+`$rosrun turtlesim turtlesim_node`
 
 可以在打开的界面中看到一个在做绕圈圈的乌龟~
 
@@ -103,7 +103,7 @@ name、type、value属性分别代表参数的名称、类型、值，类型有�
 
 #### launch文件中的rosparam标签
 
-rosparam与param的不同在于，rosparam可以导入.yaml格式的文件内容设置参数，在需要设置大量参数时，rosparam更加实用。yaml的语法十分简单，几乎就是参数名：参数值的形式。
+rosparam与param的不同在于，rosparam可以导入.yaml格式的文件内容设置参数，在需要设置大量参数时，rosparam更加实用。yaml的语法十分简单，几乎就是 *参数名：参数值* 的形式。
 
 rosparam标签的使用方法如下：
 
@@ -131,11 +131,7 @@ command属性为操作命令，load/dump表示装载和卸载yaml文件，delete
 <img src="http://leiym.com/img/in-post/post-ros/ros-param/tree1.jpg"/>
 
 
-### 有关参数的一些接口方法
-
-#### 获得参数
-
-有两种方式：
+### 获取参数的两种方法
 
 ##### ros::NodeHandle::getParam():
 
@@ -151,7 +147,7 @@ if (nh.getParam("/global_name", global_name))
 nh.param<std::string>("default_param", default_param, "default_value");
 ```
 
-第一个参数为参数名，第二个参数为接收参数值的变量名。如果获得参数值失败，则返回false。nh.param()函数可以设置一个缺省值，如果获取失败，则设置为缺省值。这种方式下如果想要获得私有参数，则需要声明一个私有NodeHandle。（如：ros::NodeHandle::getParam(~)）
+第一个参数为参数名，第二个参数为接收参数值的变量名。如果获得参数值失败，则返回false。nh.param()函数可以设置一个缺省值，如果获取失败，则设置为缺省值。这种方式下如果想要获得私有参数，则需要声明一个私有NodeHandle。（如：ros::NodeHandle nh(~)）
 
 ##### ros::param::get()
 
