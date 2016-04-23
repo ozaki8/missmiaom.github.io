@@ -195,13 +195,13 @@ Mat& ScanImageAndReduceRandomAccess(Mat& I, const uchar* const table)
 }
 ```
 
- *at* 函数输入为数据类型及需求元素的坐标，返回的是一个对应的值。如果用 get 则是constant，如果是用 set 、则为non-constant。当且仅当在 **debug** 模式下，它才会检查你的输入坐标是否有效或者超出范围。如果坐标有误，则会输出一个标准的错误信息。和高性能法相比, 在release模式下，它们之间的区别仅仅是对于图像矩阵的每个元素，本方法都会获取一个新的行指针，并通过该指针和[]操作来获取列元素。
+*at* 函数输入为数据类型及需求元素的坐标，返回的是一个对应的值。如果用 get 则是constant，如果是用 set 、则为non-constant。当且仅当在 **debug** 模式下，它才会检查你的输入坐标是否有效或者超出范围。如果坐标有误，则会输出一个标准的错误信息。和高性能法相比, 在release模式下，它们之间的区别仅仅是对于图像矩阵的每个元素，本方法都会获取一个新的行指针，并通过该指针和[]操作来获取列元素。
 
- ### 4.核心函数LUT
+#### 4.核心函数LUT
 
- 最后一种方法是使用OpenCV中的内置函数LUT（look-up table），函数声明如下：
+最后一种方法是使用OpenCV中的内置函数LUT（look-up table），函数声明如下：
 
- `CV_EXPORTS_W void LUT(InputArray src, InputArray lut, OutputArray dst);`
+`CV_EXPORTS_W void LUT(InputArray src, InputArray lut, OutputArray dst);`
 
 *src* 为输入图像数据，*dst* 为输出图像数据，*lut* 为查找表。这里，我们用Mat来定义一个查找表。
 
@@ -223,11 +223,16 @@ for( int i = 0; i < 256; ++i)
 <img src="http://leiym.com/img/in-post/post-opencv/reduce.jpg"/>
 
 **注**:对比运行时间时为了让处理更复杂，不同方法时间差距更大，我将缩减值设为了10。
+
 ```
 Time of reducing with the C operator [] (averaged for 100 runs): 20.0808 milliseconds.
+
 Time of reducing with the iterator (averaged for 100 runs): 82.2931 milliseconds.
+
 Time of reducing with the on-the-fly address generation - at function (averaged for 100 runs): 93.3516 milliseconds.
+
 Time of reducing with the LUT function (averaged for 100 runs): 4.81423 milliseconds.
+
 ```
 
 可以看到，C语言风格的指针方法相当快，达到了20ms，迭代器和动态方法时间类似，但OpenCV的内置函数LUT达到了令人发指的 **4ms**！！！
