@@ -121,7 +121,7 @@ filter2D(img, sharpen_img, img.depth(), kern);
 
 上述两种方法结果并无差异，但运行速度则相差很多。filter2D 的速度快是因为 OpenCV 内置函数都做了优化。
 
-图像结果：
+图像结果：（可见右边处理过的图像边缘更加清晰）
 
 <img src="http://leiym.com/img/in-post/post-opencv/res_sh.png"/>
 
