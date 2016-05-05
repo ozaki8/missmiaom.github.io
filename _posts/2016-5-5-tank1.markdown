@@ -50,9 +50,11 @@ Navigation Stack能够根据机器人的里程计数据，传感器数据完成�
 
 消息格式：
 
+```
 geometry_msgs/Vector linear
 
 geometry_msgs/Vector angular
+```
 
 说明：消息中 linear 和 angular 分别为线速度和角速度，都是3维向量，每一维分别表示x,y,z方向上的值。cmd_vel是 move_base 发布的速度控制话题，底层需要将其解析为左右轮速并转换成相应 PWM 信号发送给电机。
 
@@ -62,6 +64,7 @@ geometry_msgs/Vector angular
 
 消息格式：
 
+```
 std_msgs/Header header
 
 string child_frame_id
@@ -69,6 +72,7 @@ string child_frame_id
 geometry_msgs/PoseWithCovariance pose
 
 geometry_msgs/TwistWithCovariance twist
+```
 
 说明：实现较为精准的自定位是一个很重要同时难度也很大的问题，Navigation中主要是由激光数据和底盘的里程数据来融合定位。计算里程信息需要将底层反馈的速度值积分得到实时的位姿和速度。 pose 表示的是实时的粗略的位姿， twist 表示的是实时的速度。 header 包含了时间戳，以及父坐标系等信息。 child_frame_id 表示子坐标系。
 
