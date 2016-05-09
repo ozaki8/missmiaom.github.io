@@ -33,7 +33,7 @@ geometry_msgs/Vector angular
   float64 z
 ```
 
-*linear* 表示线速度， *angular* 表示角速度。我们需要接收 /cmd_vel 话题，并将数据转换为左右轮速。这里我使用的是轨迹推演算法，具体推导请看 (princeton courses)[https://www.cs.princeton.edu/courses/archive/fall11/cos495/COS495-Lecture5-Odometry.pdf]。
+*linear* 表示线速度， *angular* 表示角速度。我们需要接收 /cmd_vel 话题，并将数据转换为左右轮速。这里我使用的是轨迹推演算法，具体推导请看 [princeton courses](https://www.cs.princeton.edu/courses/archive/fall11/cos495/COS495-Lecture5-Odometry.pdf)。
 
 ##### 设置轮速
 
@@ -66,7 +66,7 @@ void subscribeVelocityCommand(const geometry_msgs::Twist& msg)
 
 	uint8_t vl_dir = Forward;                           //这里我用 uint8_t 类型的枚举量来表示前进后退方向。   
 	uint8_t vr_dir = Forward;                           //前进为Forward， 后退为Backward，停止为Stop
-                                                      //这里的思路是先初始化为前进，然后判断速度正负，
+                                                            //这里的思路是先初始化为前进，然后判断速度正负，
 	if(vl < 0)                                          //如果为负，方向设为后退，并取其相反数
 	{                                                   //因为我这里速度参数都需要是正数
 		vl_dir = Backward;
@@ -207,10 +207,10 @@ private:
 };
 ```
 
-这里我整个功能封装为一个 Odom 类，主要参考 roswiki 的 [发布Odometry教程]{http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom}， vel_sub 是接收 cmd_vel_feedback 的接受者，在其回调函数 feedbackCB 中计算出 odometry 信息，并发布出去。**注意**，这里还需要广播一个 tf 消息，用以实时更新 *base_link* 与 *odom* 坐标系之间的转换关系。
+这里我整个功能封装为一个 Odom 类，主要参考 roswiki 的 [发布Odometry教程](http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom)， vel_sub 是接收 cmd_vel_feedback 的接受者，在其回调函数 feedbackCB 中计算出 odometry 信息，并发布出去。**注意**，这里还需要广播一个 tf 消息，用以实时更新 *base_link* 与 *odom* 坐标系之间的转换关系。
 
 ---
 
 ### 后记
 
-本篇博客主要介绍了底盘的开发接口以及实现方法，主要代码参考我的github：
+本篇博客主要介绍了底盘的开发接口以及实现方法，主要代码参考我的github。
