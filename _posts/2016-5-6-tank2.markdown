@@ -67,15 +67,15 @@ mbed API手册： [handbook](https://developer.mbed.org/handbook/Homepage)
 
 第一步，先下载 **rosserial** 包至可用的工作空间，并编译。
 
-第二步，执行以下命令，生成 rosserial_mbed 库。**注意**：这里的 *<ros-lib-dir>* 是要存放库的地址，后面会用到。
+第二步，执行以下命令，生成 rosserial_mbed 库。**注意**：这里的 *ros-lib-dir* 是要存放库的地址，后面会用到。
 
-`rosrun rosserial_mbed make_libraries.py <ros-lib-dir>`
+`rosrun rosserial_mbed make_libraries.py ros-lib-dir`
 
-第三步，添加相关环境变量。请分别把 *<gcc4mbed-dir>*, *<ros-lib-dir>* 替换为你的 gcc4mbed 所在的文件夹，和 rosserial_mbed 库所在文件夹。
+第三步，添加相关环境变量。请分别把 *gcc4mbed-dir*, *ros-lib-dir* 替换为你的 gcc4mbed 所在的文件夹，和 rosserial_mbed 库所在文件夹。
 
 ```
-$ export GCC4MBED_DIR=<gcc4mbed-dir>
-$ export ROS_LIB_DIR=<ros-lib-dir>
+$ export GCC4MBED_DIR=gcc4mbed-dir
+$ export ROS_LIB_DIR=ros-lib-dir
 ```
 
 第四步，修改 makefile ，添加外部库，示例如下：
