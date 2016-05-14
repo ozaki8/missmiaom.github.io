@@ -2,7 +2,7 @@
 layout:     post
 title:      "Android Studio编译jni模块"
 subtitle:   " \"NDK\""
-date:       2016-05-09
+date:       2016-05-13
 author:     "Leiym"
 header-img: "img/post-bg-2015.jpg"
 tags:
