@@ -6,7 +6,8 @@ date:       2016-05-09
 author:     "Leiym"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - Tank ROS
+    - Tank
+    - ROS
 ---
 
 > 上篇博客中，我介绍了 mbed 以及 rosserial，这边博客就利用这两个工具来进行机器人底层功能的开发。当然，这里提到了全部都是有关 ROS 的开发，像 PWM 控速， 码盘数据读取等开发我就省略了，只要自己做过小车的应该都会。

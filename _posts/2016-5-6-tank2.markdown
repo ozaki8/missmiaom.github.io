@@ -6,7 +6,8 @@ date:       2016-05-06
 author:     "Leiym"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - Tank ROS
+    - Tank
+    - ROS
 ---
 
 > 从这篇博文开始我会详细地介绍各个部分开发过程。第一步介绍基于mbed的STM32F4系列控制器的底盘功能的开发。
