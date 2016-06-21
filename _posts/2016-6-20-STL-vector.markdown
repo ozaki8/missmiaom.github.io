@@ -47,7 +47,7 @@ bool empty();            //返回是否为空
 reference front();       //返回头元素的引用
 reference back();        //返回尾元素的引用
 
-void push_back();        //将最尾端元素取出
+void push_back();        //将元素压入末尾
 void pop_back();         //将尾端向前移动一个单位，放弃最后一个元素
 iterator insert( iterator loc, const TYPE &val );
                          //在指定位置前插入元素val
