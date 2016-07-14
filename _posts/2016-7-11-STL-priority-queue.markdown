@@ -91,7 +91,7 @@ tags:
 ```
 bool empty();             //判断是否非空
 size_type size();         //返回容器大小
-const_reference top();    //返回顶部
+const_reference top();    //得到顶部元素的引用
 void push();              //插入末端，按优先级重排 heap，底层使用 push_heap 算法
 void pop();               //弹出优先级最高的元素，底层使用 pop_heap 算法
 ```
