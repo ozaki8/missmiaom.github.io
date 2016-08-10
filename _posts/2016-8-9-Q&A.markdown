@@ -19,7 +19,7 @@ tags:
 
 1. 在 loop 函数最后，一定要调用 *spinOnce* 函数。
 
-2. 加上 #define USE_USBCON 编译预处理。
+2. 加上 *#define USE_USBCON* 编译预处理。
 
 #### Q：使用 Leonardo 的定时器功能
 
@@ -87,9 +87,9 @@ tags:
 
 **A：**
 
-1. `-DCATKIN_WHITELIST_PACKAGES="package1;package2"`
+`-DCATKIN_WHITELIST_PACKAGES="package1;package2"`
 
-2. `-DCMAKE_INSTALL_PREFIX=/opt/ros/indigo`
+`-DCMAKE_INSTALL_PREFIX=/opt/ros/indigo`
 
 #### Q： 查看 tk1 的 L4T 版本
 
@@ -119,11 +119,11 @@ tags:
 
 **A：**
 
-1. FIND_PACKAGE(OpenCV 2.4.12 REQUIRED QUIET)
+`FIND_PACKAGE(OpenCV 2.4.12 REQUIRED QUIET)`
 
-2. INCLUDE_DIRECTORIES("/usr/local/include")
+`INCLUDE_DIRECTORIES("/usr/local/include")`
 
-3. LINK_DIRECTORIES("/usr/local/lib")
+`LINK_DIRECTORIES("/usr/local/lib")`
 
 #### Q： 使用双目相机跑 rtabmap
 
@@ -131,7 +131,7 @@ tags:
 
 1. 相机坐标系与世界坐标系：相机坐标系是：x轴指向正右，y轴指向正下，z轴指向正前。而 rtabmap 需要的坐标系为世界坐标系，即：x轴指向正前，y轴指向正左，z轴指向正上。
 
-2. 利用 static_transform_publisher 发布坐标转换关系。绕x轴旋转-90°，绕z轴旋转-90°
+2. 利用 *static_transform_publisher* 发布坐标转换关系。绕x轴旋转-90°，绕z轴旋转-90°
 
 ```
 <arg name="pi/2" value="1.5707963267948966" />
@@ -141,6 +141,8 @@ tags:
 ```
 
 #### Q： 在 rtabmap 中使用 SURF 算法
+
+**A：**
 
 ```
 
@@ -152,14 +154,20 @@ tags:
 
 #### Q： rtabmap 开启自定位模式，不建图
 
+**A：**
+
 ```
 <param name="Mem/IncrementalMemory" type="string" value="false"/>
 ```
 
 #### Q： 查看 rtabmap 所有参数
 
+**A：**
+
 `rosrun rtabmap_ros rtabmap --params-all`
 
 #### Q： 更改 rtabmp 显示参数
 
-修改 launch/rgbd_gui.ini 文件
+**A：**
+
+修改 *launch/rgbd_gui.ini* 文件中对应参数。
