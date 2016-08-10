@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      ""
+title:      "pluginlib的使用总结"
 subtitle:   " \"the pluginlib of ROS\""
-date:       2016-08-09
+date:       2016-08-10
 author:     "Leiym"
 header-img: "img/post-bg-2015.jpg"
 tags:
