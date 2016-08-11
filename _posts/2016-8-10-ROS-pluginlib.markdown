@@ -17,11 +17,11 @@ tags:
 
 ### 插件的编写方法
 
-*pluginlib* 利用多态的特性，不同的插件如果实现统一接口，便可以随意更换插件。用户在使用插件时，调用统一的接口函数，更换插件时，并不需要更改程序，也不需要重新编译。
+*pluginlib* 利用多态的特性，不同的插件如果实现统一接口，便可以互相更换。用户在使用插件时，调用统一的接口函数，更换插件时，不需要更改程序，也不需要重新编译。
 
 所以，使用 *pluginlib* 的编写插件的方法可总结为以下四步：
 
-1. 创建插件基类，统一接口。（若为已有的接口编写插件，则跳过）
+1. 创建插件基类，统一接口。（若为现成的接口编写插件，则跳过该步）
 2. 编写插件类，继承插件基类，实现统一接口。
 3. 注册插件，并编译为动态库。
 4. 使插件可用于 ROS 工具链。
@@ -195,7 +195,7 @@ int main(int argc, char** argv)
     boost::shared_ptr<calculate_base::Calculate> calculate = calculate_loader.createInstance(cal);
     calculate->initialize(x, y);
 
-    ROS_INFO("Add : %d", calculate->result());
+    ROS_INFO("Result : %d", calculate->result());
   }
   catch(pluginlib::PluginlibException& ex)
   {
