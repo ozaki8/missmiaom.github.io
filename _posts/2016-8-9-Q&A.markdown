@@ -82,6 +82,11 @@ tags:
 
 3. 选择一台机器作为主机（运行roscore），其他机器为从机，并在所有机器的 *～/.bashrc* 文件末尾写入 *export ROS_MASTER_URI=http://MASTER_IP:11311* 。
 
+4. 在每台机器上的 */etc/hosts* 文件中，加入以 **IP 主机名** 格式的标示。有几个机器就加几行。如下图：
+
+<img src="http://leiym.com/img/in-post/post-STL/hosts.png"/>
+
+
 
 #### Q： 使用 catkin 编译某一个包并下载
 
