@@ -17,15 +17,15 @@ tags:
 
 * 在网络连接中点击 *Add* 。
 
-<img src="http://leiym.com/img/in-post/post-ROS/network1.png"/>
+<img src="http://leiym.com/img/in-post/post-ros/network1.png"/>
 
 * 新建 *Ethernet* ，点击 *Create* 。
 
-<img src="http://leiym.com/img/in-post/post-ROS/network2.png"/>
+<img src="http://leiym.com/img/in-post/post-ros/network2.png"/>
 
 * 输入新建以太网名称，选择 *IPv4 Settings* 标签页， *Method* 选择 *Manual*，添加 *Address* ,这里填的是固定的 IP 地址，稍后通信时会用到，我设置为 *192.168.1.10* ， 子网掩码填 *255.255.255.0* 即可 。
 
-<img src="http://leiym.com/img/in-post/post-ROS/network3.png"/>
+<img src="http://leiym.com/img/in-post/post-ros/network3.png"/>
 
 #### 第二步，配置虚拟机网络连接为桥接模式
 
@@ -41,7 +41,7 @@ tags:
 
 ### 互 ping 测试
 
-<img src="http://leiym.com/img/in-post/post-ROS/network_ping.png"/>
+<img src="http://leiym.com/img/in-post/post-ros/network_ping.png"/>
 
 这里只截取一个图，妙算 ping 虚拟机就省略了。
 
